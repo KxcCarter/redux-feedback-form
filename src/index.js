@@ -34,7 +34,7 @@ const supportReducer = (state = '', action) => {
 };
 
 // string
-const commentsReducer = (state = '', action) => {
+const commentReducer = (state = '', action) => {
   if (action.type === 'SET_COMMENT') {
     return action.payload;
   }
@@ -46,7 +46,7 @@ const storeInstance = createStore(
     feelingReducer,
     understandingReducer,
     supportReducer,
-    commentsReducer,
+    commentReducer,
   }),
   applyMiddleware(logger)
 );
