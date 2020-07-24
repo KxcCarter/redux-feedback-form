@@ -35,7 +35,7 @@ const supportReducer = (state = '', action) => {
 
 // string
 const commentsReducer = (state = '', action) => {
-  if (action.type === 'SOMETHING') {
+  if (action.type === 'SET_COMMENT') {
     return action.payload;
   }
   return state;
