@@ -27,8 +27,8 @@ const understandingReducer = (state = '', action) => {
 
 // number from 1 - 5
 const supportReducer = (state = '', action) => {
-  if (action.type === 'SOMETHING') {
-    return action.payload;
+  if (action.type === 'SET_SUPPORT') {
+    return Number(action.payload);
   }
   return state;
 };
