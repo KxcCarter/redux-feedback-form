@@ -9,13 +9,15 @@ import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
-const feelingsReducer = (state = '', action) => {
+// number from 1 - 5
+const feelingReducer = (state = '', action) => {
   if (action.type === 'SOMETHING') {
     return action.payload;
   }
   return state;
 };
 
+// number from 1 - 5
 const understandingReducer = (state = '', action) => {
   if (action.type === 'SOMETHING') {
     return action.payload;
@@ -23,6 +25,7 @@ const understandingReducer = (state = '', action) => {
   return state;
 };
 
+// number from 1 - 5
 const supportReducer = (state = '', action) => {
   if (action.type === 'SOMETHING') {
     return action.payload;
@@ -30,6 +33,7 @@ const supportReducer = (state = '', action) => {
   return state;
 };
 
+// string
 const commentsReducer = (state = '', action) => {
   if (action.type === 'SOMETHING') {
     return action.payload;
@@ -39,7 +43,7 @@ const commentsReducer = (state = '', action) => {
 
 const storeInstance = createStore(
   combineReducers({
-    feelingsReducer,
+    feelingReducer,
     understandingReducer,
     supportReducer,
     commentsReducer,
