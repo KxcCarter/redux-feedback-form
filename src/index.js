@@ -11,16 +11,16 @@ import registerServiceWorker from './registerServiceWorker';
 
 // number from 1 - 5
 const feelingReducer = (state = '', action) => {
-  if (action.type === 'SOMETHING') {
-    return action.payload;
+  if (action.type === 'SET_FEELINGS') {
+    return Number(action.payload);
   }
   return state;
 };
 
 // number from 1 - 5
 const understandingReducer = (state = '', action) => {
-  if (action.type === 'SOMETHING') {
-    return action.payload;
+  if (action.type === 'SET_UNDERSTAND') {
+    return Number(action.payload);
   }
   return state;
 };
