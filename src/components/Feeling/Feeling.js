@@ -6,15 +6,14 @@ import { connect } from 'react-redux';
 //--- Components ---
 
 class Feeling extends Component {
-  // sets default to 5
   state = {
-    feel: 5,
+    feel: '',
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({
-      type: 'SET_FEELINGS',
+      type: 'SET_FEELING',
       payload: this.state.feel,
     });
   };
@@ -29,19 +28,52 @@ class Feeling extends Component {
   render() {
     return (
       <div>
-        <h4>Feeling</h4>
-
+        <h3>Feeling</h3>
+        <h4> How are you feeling about today's concepts? (between 0 and 5):</h4>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="feel">
-            How are you feeling about today's concepts? (between 0 and 5):
-          </label>
+          <label htmlFor="1">1</label>
           <input
-            type="range"
-            id="feel"
+            type="radio"
+            id="1"
             name="feel"
-            min="0"
-            max="5"
-            value={this.state.feel}
+            required
+            value="1"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="2">2</label>
+          <input
+            type="radio"
+            id="2"
+            name="feel"
+            required
+            value="2"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="3">3</label>
+          <input
+            type="radio"
+            id="3"
+            name="feel"
+            required
+            value="3"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="4">4</label>
+          <input
+            type="radio"
+            id="4"
+            name="feel"
+            required
+            value="4"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="5">5</label>
+          <input
+            type="radio"
+            id="5"
+            name="feel"
+            required
+            value="5"
             onChange={this.handleInputChange}
           />
           <button type="submit">Next</button>

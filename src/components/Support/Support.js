@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 //--- Components ---
 
 class Support extends Component {
-  // sets default to 5
   state = {
-    support: 5,
+    support: '',
   };
 
   handleSubmit = (event) => {
@@ -30,17 +29,51 @@ class Support extends Component {
     return (
       <div>
         <h4>Support</h4>
+        <h4>How supported do you feel today? (between 0 and 5):</h4>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="support">
-            How well do you supported today? (between 0 and 5):
-          </label>
+          <label htmlFor="1">1</label>
           <input
-            type="range"
-            id="support"
+            type="radio"
+            id="1"
             name="support"
-            min="0"
-            max="5"
-            value={this.state.support}
+            required
+            value="1"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="2">2</label>
+          <input
+            type="radio"
+            id="2"
+            name="support"
+            required
+            value="2"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="3">3</label>
+          <input
+            type="radio"
+            id="3"
+            name="support"
+            required
+            value="3"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="4">4</label>
+          <input
+            type="radio"
+            id="4"
+            name="support"
+            required
+            value="4"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="5">5</label>
+          <input
+            type="radio"
+            id="5"
+            name="support"
+            required
+            value="5"
             onChange={this.handleInputChange}
           />
           <button type="submit">Next</button>

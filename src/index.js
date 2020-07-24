@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 // number from 1 - 5
 const feelingReducer = (state = '', action) => {
-  if (action.type === 'SET_FEELINGS') {
+  if (action.type === 'SET_FEELING') {
     return Number(action.payload);
   }
   return state;

@@ -6,9 +6,8 @@ import { connect } from 'react-redux';
 //--- Components ---
 
 class Understanding extends Component {
-  // sets default to 5
   state = {
-    understand: 5,
+    understand: '',
   };
 
   handleSubmit = (event) => {
@@ -29,18 +28,52 @@ class Understanding extends Component {
   render() {
     return (
       <div>
-        <h4>Understanding</h4>
+        <h3>Understanding</h3>
+        <h4>How well do you understand today's concepts? (between 0 and 5):</h4>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="understand">
-            How well do you understand today's concepts? (between 0 and 5):
-          </label>
+          <label htmlFor="1">1</label>
           <input
-            type="range"
-            id="understand"
+            type="radio"
+            id="1"
             name="understand"
-            min="0"
-            max="5"
-            value={this.state.understand}
+            required
+            value="1"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="2">2</label>
+          <input
+            type="radio"
+            id="2"
+            name="understand"
+            required
+            value="2"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="3">3</label>
+          <input
+            type="radio"
+            id="3"
+            name="understand"
+            required
+            value="3"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="4">4</label>
+          <input
+            type="radio"
+            id="4"
+            name="understand"
+            required
+            value="4"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="5">5</label>
+          <input
+            type="radio"
+            id="5"
+            name="understand"
+            required
+            value="5"
             onChange={this.handleInputChange}
           />
           <button type="submit">Next</button>
