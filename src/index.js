@@ -9,7 +9,43 @@ import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
-const storeInstance = createStore(combineReducers({}), applyMiddleware(logger));
+const feelingsReducer = (state = '', action) => {
+  if (action.type === 'SOMETHING') {
+    return action.payload;
+  }
+  return state;
+};
+
+const understandingReducer = (state = '', action) => {
+  if (action.type === 'SOMETHING') {
+    return action.payload;
+  }
+  return state;
+};
+
+const supportReducer = (state = '', action) => {
+  if (action.type === 'SOMETHING') {
+    return action.payload;
+  }
+  return state;
+};
+
+const commentsReducer = (state = '', action) => {
+  if (action.type === 'SOMETHING') {
+    return action.payload;
+  }
+  return state;
+};
+
+const storeInstance = createStore(
+  combineReducers({
+    feelingsReducer,
+    understandingReducer,
+    supportReducer,
+    commentsReducer,
+  }),
+  applyMiddleware(logger)
+);
 
 ReactDOM.render(
   <Provider store={storeInstance}>
