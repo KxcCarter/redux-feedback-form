@@ -16,6 +16,10 @@ class Comments extends Component {
       type: 'SET_COMMENT',
       payload: this.state.comment,
     });
+    this.setState({
+      comment: '',
+    });
+    this.props.history.push('/review');
   };
 
   handleInputChange = (event) => {

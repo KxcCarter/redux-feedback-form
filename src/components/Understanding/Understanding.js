@@ -16,6 +16,10 @@ class Understanding extends Component {
       type: 'SET_UNDERSTAND',
       payload: this.state.understand,
     });
+    this.setState({
+      understand: '',
+    });
+    this.props.history.push('/3');
   };
 
   handleInputChange = (event) => {

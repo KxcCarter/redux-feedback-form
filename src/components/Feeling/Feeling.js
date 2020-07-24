@@ -16,6 +16,8 @@ class Feeling extends Component {
       type: 'SET_FEELING',
       payload: this.state.feel,
     });
+    this.setState({ feel: '' });
+    this.props.history.push('/2');
   };
 
   handleInputChange = (event) => {

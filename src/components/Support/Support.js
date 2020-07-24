@@ -16,6 +16,10 @@ class Support extends Component {
       type: 'SET_SUPPORT',
       payload: this.state.support,
     });
+    this.setState({
+      support: '',
+    });
+    this.props.history.push('/4');
   };
 
   handleInputChange = (event) => {
