@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
+
+//--- CSS ---
 import './App.css';
+
+//--- Components ---
 
 class App extends Component {
   render() {
@@ -8,12 +14,15 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Feedback!</h1>
-          <h4><i>Don't forget it!</i></h4>
+          <h4>
+            <i>Don't forget it!</i>
+          </h4>
         </header>
-        <br/>
+        <br />
+        <Router></Router>
       </div>
     );
   }
 }
 
-export default App;
+export default connect()(App);
