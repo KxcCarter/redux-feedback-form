@@ -4,6 +4,7 @@
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+### TODO:
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+[ ] Currently inputs are range inputs, and they are set to a default value of 5, meaning I can't use the 'required' attribute on them because it looks like they have already had user interaction.
+Use radio buttons instead.
