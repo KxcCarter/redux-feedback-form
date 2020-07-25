@@ -1,10 +1,73 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 
 //--- CSS ---
 
 //--- Components ---
+const Support = () => {
+  const [supportQuality, setSupportQuality] = useState('');
 
+  const handleInputChange = ({ target: { value: supportQuality } }) => {
+    setSupportQuality(supportQuality);
+  };
+
+  const handleSubmit = () => {};
+
+  return (
+    <div>
+      <h4>Support</h4>
+      <h4>How supported do you feel today? (between 0 and 5):</h4>
+      <form onSubmit={this.handleSubmit}>
+        <label htmlFor="1">1</label>
+        <input
+          type="radio"
+          id="1"
+          name="support"
+          required
+          value="1"
+          onChange={this.handleInputChange}
+        />
+        <label htmlFor="2">2</label>
+        <input
+          type="radio"
+          id="2"
+          name="support"
+          required
+          value="2"
+          onChange={this.handleInputChange}
+        />
+        <label htmlFor="3">3</label>
+        <input
+          type="radio"
+          id="3"
+          name="support"
+          required
+          value="3"
+          onChange={this.handleInputChange}
+        />
+        <label htmlFor="4">4</label>
+        <input
+          type="radio"
+          id="4"
+          name="support"
+          required
+          value="4"
+          onChange={this.handleInputChange}
+        />
+        <label htmlFor="5">5</label>
+        <input
+          type="radio"
+          id="5"
+          name="support"
+          required
+          value="5"
+          onChange={this.handleInputChange}
+        />
+        <button type="submit">Next</button>
+      </form>
+    </div>
+  );
+};
 class Support extends Component {
   state = {
     support: '',
@@ -22,9 +85,9 @@ class Support extends Component {
     this.props.history.push('/4');
   };
 
-  handleInputChange = (event) => {
+  handleInputChange = ({ target: { value: supportQuality } }) => {
     this.setState({
-      support: event.target.value,
+      support: supportQuality,
     });
   };
 
