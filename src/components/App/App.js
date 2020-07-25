@@ -10,6 +10,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import Success from '../Success/Success';
+import HorizontalLinearStepper from '../Stepper/Stepper';
 
 //--- Components ---
 
@@ -31,6 +32,7 @@ class App extends Component {
           <Route exact path="/4" component={Comments} />
           <Route exact path="/review" component={Review} />
           <Route exact path="/success" component={Success} />
+          <Route exact path="/" component={HorizontalLinearStepper} />
         </Router>
       </div>
     );

@@ -6,5 +6,5 @@
 
 ### TODO:
 
-[ ] Currently inputs are range inputs, and they are set to a default value of 5, meaning I can't use the 'required' attribute on them because it looks like they have already had user interaction.
+[x] Currently inputs are range inputs, and they are set to a default value of 5, meaning I can't use the 'required' attribute on them because it looks like they have already had user interaction.
 Use radio buttons instead.
