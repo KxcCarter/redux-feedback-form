@@ -23,7 +23,6 @@ class Understanding extends Component {
   };
 
   handleInputChange = (event) => {
-    console.log(event.target.value);
     this.setState({
       understand: event.target.value,
     });

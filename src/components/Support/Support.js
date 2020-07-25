@@ -23,7 +23,6 @@ class Support extends Component {
   };
 
   handleInputChange = (event) => {
-    console.log(event.target.value);
     this.setState({
       support: event.target.value,
     });

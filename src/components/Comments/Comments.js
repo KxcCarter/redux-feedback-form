@@ -23,7 +23,6 @@ class Comments extends Component {
   };
 
   handleInputChange = (event) => {
-    console.log(event.target.value);
     this.setState({
       comments: event.target.value,
     });

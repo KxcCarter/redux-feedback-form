@@ -12,7 +12,6 @@ app.use(express.static('build'));
 /** ---------- EXPRESS ROUTES ---------- **/
 // for Base mode I only need to POST, I think.
 app.post('/feedback', (req, res) => {
-  console.log(req.body);
   const query = `INSERT INTO feedback (feeling, understanding, support, comments) 
                 VALUES ($1, $2, $3, $4);`;
   pool

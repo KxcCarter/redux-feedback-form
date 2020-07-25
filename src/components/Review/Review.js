@@ -25,7 +25,7 @@ class Review extends Component {
       .post('/feedback', this.state)
       .then((response) => {
         // should GET, but what is there to get?
-        this.props.history.push('/1');
+        this.props.history.push('/success');
       })
       .catch((err) => {
         console.log('POST error!', err);

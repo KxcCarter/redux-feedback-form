@@ -21,7 +21,6 @@ class Feeling extends Component {
   };
 
   handleInputChange = (event) => {
-    console.log(event.target.value);
     this.setState({
       feel: event.target.value,
     });
