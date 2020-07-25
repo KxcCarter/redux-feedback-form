@@ -7,25 +7,46 @@ import axios from 'axios';
 
 //--- Components ---
 
+String.prototype.capitalize = function () {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 class Review extends Component {
   state = {
     feeling: this.props.store.feelingReducer,
     understanding: this.props.store.understandingReducer,
     support: this.props.store.supportReducer,
-    comment: this.props.store.commentReducer,
+    comments: this.props.store.commentReducer,
+  };
+
+  onClickSubmit = () => {
+    console.log(this.state);
+    axios
+      .post('/feedback', this.state)
+      .then((response) => {
+        // should GET, but what is there to get?
+        this.props.history.push('/1');
+      })
+      .catch((err) => {
+        console.log('POST error!', err);
+      });
   };
 
   render() {
-    let stuff = Object.values(this.state);
-    console.log(stuff);
+    let review = [];
+    for (const [key, value] of Object.entries(this.state)) {
+      review.push(`${key.capitalize()}: ${value}`);
+    }
 
-    const review = stuff.map((item, index) => {
-      return <li key={index}>{item}</li>;
+    const reviewList = review.map((item, index) => {
+      return <h2 key={index}>{item}</h2>;
     });
+
     return (
       <div>
         <h4>Review</h4>
-        <ul>{review}</ul>
+        {reviewList}
+        <button onClick={this.onClickSubmit}>Submit!</button>
       </div>
     );
   }

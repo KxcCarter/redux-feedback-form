@@ -7,17 +7,17 @@ import { connect } from 'react-redux';
 
 class Comments extends Component {
   state = {
-    comment: '',
+    comments: '',
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch({
       type: 'SET_COMMENT',
-      payload: this.state.comment,
+      payload: this.state.comments,
     });
     this.setState({
-      comment: '',
+      comments: '',
     });
     this.props.history.push('/review');
   };
@@ -25,7 +25,7 @@ class Comments extends Component {
   handleInputChange = (event) => {
     console.log(event.target.value);
     this.setState({
-      comment: event.target.value,
+      comments: event.target.value,
     });
   };
 
@@ -34,13 +34,13 @@ class Comments extends Component {
       <div>
         <h4>Comments</h4>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="comment">Do you have any comments?</label>
+          <label htmlFor="comments">Do you have any comments?</label>
           <textarea
-            id="comment"
-            name="comment"
+            id="comments"
+            name="comments"
             rows="4"
             cols="30"
-            value={this.state.comment}
+            value={this.state.comments}
             onChange={this.handleInputChange}
           ></textarea>
           <button type="submit">Next</button>
