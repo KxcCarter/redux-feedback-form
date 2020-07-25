@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //--- CSS ---
 
@@ -8,6 +9,7 @@ import { connect, useDispatch } from 'react-redux';
 const Feeling = () => {
   const [feelingLevel, setFeelingLevel] = useState('');
   const dispatch = useDispatch();
+  let history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,10 +18,10 @@ const Feeling = () => {
       payload: feelingLevel,
     });
     setFeelingLevel('');
+    // history.push('/2');
   };
 
   const handleInputChange = (event) => {
-    console.log(event.target.value);
     setFeelingLevel(event.target.value);
   };
 

@@ -1,89 +1,84 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //--- CSS ---
 
 //--- Components ---
 
-class Understanding extends Component {
-  state = {
-    understand: '',
-  };
+const Understanding = () => {
+  const [understandingLevel, setUnderstandingLevel] = useState('');
+  const dispatch = useDispatch();
+  let history = useHistory();
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({
+    dispatch({
       type: 'SET_UNDERSTAND',
-      payload: this.state.understand,
+      payload: understandingLevel,
     });
-    this.setState({
-      understand: '',
-    });
-    this.props.history.push('/3');
+    setUnderstandingLevel('');
+    // history.push('/3');
   };
 
-  handleInputChange = (event) => {
-    this.setState({
-      understand: event.target.value,
-    });
+  const handleInputChange = (event) => {
+    setUnderstandingLevel(event.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <h3>Understanding</h3>
-        <h4>How well do you understand today's concepts? (between 0 and 5):</h4>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="1">1</label>
-          <input
-            type="radio"
-            id="1"
-            name="understand"
-            required
-            value="1"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="2">2</label>
-          <input
-            type="radio"
-            id="2"
-            name="understand"
-            required
-            value="2"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="3">3</label>
-          <input
-            type="radio"
-            id="3"
-            name="understand"
-            required
-            value="3"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="4">4</label>
-          <input
-            type="radio"
-            id="4"
-            name="understand"
-            required
-            value="4"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="5">5</label>
-          <input
-            type="radio"
-            id="5"
-            name="understand"
-            required
-            value="5"
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Next</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h3>Understanding</h3>
+      <h4>How well do you understand today's concepts? (between 0 and 5):</h4>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="1">1</label>
+        <input
+          type="radio"
+          id="1"
+          name="understand"
+          required
+          value="1"
+          onChange={handleInputChange}
+        />
+        <label htmlFor="2">2</label>
+        <input
+          type="radio"
+          id="2"
+          name="understand"
+          required
+          value="2"
+          onChange={handleInputChange}
+        />
+        <label htmlFor="3">3</label>
+        <input
+          type="radio"
+          id="3"
+          name="understand"
+          required
+          value="3"
+          onChange={handleInputChange}
+        />
+        <label htmlFor="4">4</label>
+        <input
+          type="radio"
+          id="4"
+          name="understand"
+          required
+          value="4"
+          onChange={handleInputChange}
+        />
+        <label htmlFor="5">5</label>
+        <input
+          type="radio"
+          id="5"
+          name="understand"
+          required
+          value="5"
+          onChange={handleInputChange}
+        />
+        <button type="submit">Next</button>
+      </form>
+    </div>
+  );
+};
 
 export default connect()(Understanding);

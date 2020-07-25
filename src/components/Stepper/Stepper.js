@@ -11,7 +11,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import { Box } from '@material-ui/core';
-import { useSelector, connect } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +39,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Feeling />;
+      return { body: <Feeling />, type: 'SET_UNDERSTAND' };
     case 1:
       return <Understanding />;
     case 2:
@@ -57,20 +57,18 @@ const mapStoreToProps = (store) => {
   return { store };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return { feeling: () => dispatch({ type: 'SET_FEELING' }) };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return { feeling: () => dispatch({ type: 'SET_FEELING' }) };
+// };
 
-export default connect(
-  mapStoreToProps,
-  mapDispatchToProps
-)(HorizontalLinearStepper);
+export default connect(mapStoreToProps)(HorizontalLinearStepper);
 
 function HorizontalLinearStepper() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
   const steps = getSteps();
+  const dispatch = useDispatch();
 
   // This should make leaving comments skippable
   const isStepOptional = (step) => {
@@ -89,6 +87,8 @@ function HorizontalLinearStepper() {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
+    // Somehow access the data from inner components and dispatch to store.
+    dispatch({ type: getStepContent(activeStep).type });
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
@@ -150,11 +150,8 @@ function HorizontalLinearStepper() {
           </div>
         ) : (
           <div>
-            <Box>{getStepContent(activeStep)}</Box>
-            <Typography className={classes.instructions}>
-              I removed the contents and put them in a Box I created above in
-              order to prevent scary red errors.
-            </Typography>
+            <Box pb={2}>{getStepContent(activeStep).body}</Box>
+
             <div>
               <Button
                 disabled={activeStep === 0}
