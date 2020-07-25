@@ -11,7 +11,7 @@ import Support from '../Support/Support';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import { Box } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useSelector, connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,13 +53,24 @@ function getStepContent(step) {
   }
 }
 
-export default function HorizontalLinearStepper() {
+const mapStoreToProps = (store) => {
+  return { store };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return { feeling: () => dispatch({ type: 'SET_FEELING' }) };
+};
+
+export default connect(
+  mapStoreToProps,
+  mapDispatchToProps
+)(HorizontalLinearStepper);
+
+function HorizontalLinearStepper() {
   const classes = useStyles();
-  // activeStep is zero-indexed.
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
+  const [activeStep, setActiveStep] = useState(0);
+  const [skipped, setSkipped] = useState(new Set());
   const steps = getSteps();
-  const werkIt = useSelector();
 
   // This should make leaving comments skippable
   const isStepOptional = (step) => {
@@ -78,8 +89,6 @@ export default function HorizontalLinearStepper() {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(activeStep);
     }
-
-    console.log(werkIt);
 
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
