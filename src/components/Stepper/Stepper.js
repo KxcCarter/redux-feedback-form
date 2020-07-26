@@ -41,13 +41,13 @@ function getStepContent(step) {
     case 0:
       return { body: <Feeling />, type: 'SET_UNDERSTAND' };
     case 1:
-      return <Understanding />;
+      return { body: <Understanding />, type: 'SET_UNDERSTANDING' };
     case 2:
-      return <Support />;
+      return { body: <Support />, type: 'SET_SUPPORT' };
     case 3:
-      return <Comments />;
+      return { body: <Comments />, type: 'SET_COMMENTS' };
     case 4:
-      return <Review />;
+      return { body: <Review />, type: null };
     default:
       return 'Unknown step';
   }
@@ -150,7 +150,7 @@ function HorizontalLinearStepper() {
           </div>
         ) : (
           <div>
-            <Box pb={2}>{getStepContent(activeStep).body}</Box>
+            <Box p={3}>{getStepContent(activeStep).body}</Box>
 
             <div>
               <Button
