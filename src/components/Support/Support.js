@@ -5,6 +5,13 @@ import { useHistory } from 'react-router-dom';
 //--- CSS ---
 
 //--- Components ---
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import { Button, Box } from '@material-ui/core';
+
 const Support = () => {
   const [supportLevel, setSupportLevel] = useState('');
   const dispatch = useDispatch();
@@ -17,7 +24,7 @@ const Support = () => {
       payload: supportLevel,
     });
     setSupportLevel('');
-    // history.push('/4');
+    history.push('/4');
   };
 
   const handleInputChange = (event) => {
@@ -27,54 +34,54 @@ const Support = () => {
   return (
     <div>
       <h4>Support</h4>
-      <h4>How supported do you feel today? (between 0 and 5):</h4>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="1">1</label>
-        <input
-          type="radio"
-          id="1"
-          name="support"
-          required
-          value="1"
-          onChange={handleInputChange}
-        />
-        <label htmlFor="2">2</label>
-        <input
-          type="radio"
-          id="2"
-          name="support"
-          required
-          value="2"
-          onChange={handleInputChange}
-        />
-        <label htmlFor="3">3</label>
-        <input
-          type="radio"
-          id="3"
-          name="support"
-          required
-          value="3"
-          onChange={handleInputChange}
-        />
-        <label htmlFor="4">4</label>
-        <input
-          type="radio"
-          id="4"
-          name="support"
-          required
-          value="4"
-          onChange={handleInputChange}
-        />
-        <label htmlFor="5">5</label>
-        <input
-          type="radio"
-          id="5"
-          name="support"
-          required
-          value="5"
-          onChange={handleInputChange}
-        />
-        <button type="submit">Next</button>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">
+            How supported do you feel today? (between 0 and 5):
+          </FormLabel>
+          <RadioGroup
+            row
+            aria-label="supportQuality"
+            name="supportQualityRating"
+            onChange={handleInputChange}
+          >
+            <FormControlLabel
+              value="1"
+              labelPlacement="top"
+              control={<Radio required />}
+              label="1"
+            />
+            <FormControlLabel
+              value="2"
+              labelPlacement="top"
+              control={<Radio required />}
+              label="2"
+            />
+            <FormControlLabel
+              value="3"
+              labelPlacement="top"
+              control={<Radio required />}
+              label="3"
+            />
+            <FormControlLabel
+              value="4"
+              labelPlacement="top"
+              control={<Radio required />}
+              label="4"
+            />
+            <FormControlLabel
+              value="5"
+              labelPlacement="top"
+              control={<Radio required />}
+              label="5"
+            />
+          </RadioGroup>
+          <Box justifyContent="center">
+            <Button variant="contained" type="submit">
+              Save and Next
+            </Button>
+          </Box>
+        </FormControl>
       </form>
     </div>
   );
