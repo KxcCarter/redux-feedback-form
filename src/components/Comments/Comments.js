@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 //--- Components ---
 import TextField from '@material-ui/core/TextField';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, Typography } from '@material-ui/core';
 
 const Comments = () => {
   const [comments, setComments] = useState('');
@@ -29,22 +29,24 @@ const Comments = () => {
 
   return (
     <div>
-      <h4>Comments</h4>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          id="outlined-multiline-flexible"
-          multiline
-          rowsMax={5}
-          label="Optional Comments"
-          variant="outlined"
-          onChange={handleInputChange}
-        />
-        <Box justifyContent="center" mt={3}>
-          <Button type="submit" variant="contained">
-            Save and Review
-          </Button>
-        </Box>
-      </form>
+      <Typography variant="h3">Comments</Typography>
+      <Box m={3}>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="outlined-multiline-flexible"
+            multiline
+            rowsMax={5}
+            label="Optional Comments"
+            variant="outlined"
+            onChange={handleInputChange}
+          />
+          <Box justifyContent="center" mt={3}>
+            <Button type="submit" variant="contained">
+              Save and Review
+            </Button>
+          </Box>
+        </form>
+      </Box>
     </div>
   );
 };

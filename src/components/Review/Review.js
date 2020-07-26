@@ -2,6 +2,7 @@ import React from 'react';
 import { connect, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Typography, Box } from '@material-ui/core';
 
 //--- CSS ---
 
@@ -40,14 +41,20 @@ const Review = () => {
   }
 
   const reviewList = review.map((item, index) => {
-    return <h2 key={index}>{item}</h2>;
+    return (
+      <Typography variant="h5" key={index}>
+        {item}
+      </Typography>
+    );
   });
 
   return (
     <div>
-      <h4>Review</h4>
-      {reviewList}
-      <button onClick={onClickSubmit}>Submit!</button>
+      <Typography variant="h3">Review</Typography>
+      <Box m={3}>{reviewList}</Box>
+      <Button variant="contained" onClick={onClickSubmit}>
+        Submit!
+      </Button>
     </div>
   );
 };
