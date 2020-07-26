@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from 'react';
+import { connect, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Typography, Box } from '@material-ui/core';
 
 //--- CSS ---
 
@@ -11,46 +12,52 @@ String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-class Review extends Component {
-  state = {
-    feeling: this.props.store.feelingReducer,
-    understanding: this.props.store.understandingReducer,
-    support: this.props.store.supportReducer,
-    comments: this.props.store.commentReducer,
+const Review = () => {
+  let history = useHistory();
+  const store = useSelector((store) => store);
+
+  const feedback = {
+    feeling: store.feelingReducer,
+    understanding: store.understandingReducer,
+    support: store.supportReducer,
+    comments: store.commentReducer,
   };
 
-  onClickSubmit = () => {
-    console.log(this.state);
+  const onClickSubmit = () => {
     axios
-      .post('/feedback', this.state)
+      .post('/feedback', feedback)
       .then((response) => {
         // should GET, but what is there to get?
-        this.props.history.push('/success');
+        history.push('/success');
       })
       .catch((err) => {
         console.log('POST error!', err);
       });
   };
 
-  render() {
-    let review = [];
-    for (const [key, value] of Object.entries(this.state)) {
-      review.push(`${key.capitalize()}: ${value}`);
-    }
-
-    const reviewList = review.map((item, index) => {
-      return <h2 key={index}>{item}</h2>;
-    });
-
-    return (
-      <div>
-        <h4>Review</h4>
-        {reviewList}
-        <button onClick={this.onClickSubmit}>Submit!</button>
-      </div>
-    );
+  let review = [];
+  for (const [key, value] of Object.entries(feedback)) {
+    review.push(`${key.capitalize()}: ${value}`);
   }
-}
+
+  const reviewList = review.map((item, index) => {
+    return (
+      <Typography variant="h5" key={index}>
+        {item}
+      </Typography>
+    );
+  });
+
+  return (
+    <div>
+      <Typography variant="h3">Review</Typography>
+      <Box m={3}>{reviewList}</Box>
+      <Button variant="contained" onClick={onClickSubmit}>
+        Submit!
+      </Button>
+    </div>
+  );
+};
 
 const mapStoreToProps = (store) => {
   return { store };

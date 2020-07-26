@@ -1,52 +1,54 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //--- CSS ---
 
 //--- Components ---
+import TextField from '@material-ui/core/TextField';
+import { Button, Box, Typography } from '@material-ui/core';
 
-class Comments extends Component {
-  state = {
-    comments: '',
-  };
+const Comments = () => {
+  const [comments, setComments] = useState('');
+  const dispatch = useDispatch();
+  let history = useHistory();
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({
+    dispatch({
       type: 'SET_COMMENT',
-      payload: this.state.comments,
+      payload: comments,
     });
-    this.setState({
-      comments: '',
-    });
-    this.props.history.push('/review');
+    setComments('');
+    history.push('/review');
   };
 
-  handleInputChange = (event) => {
-    this.setState({
-      comments: event.target.value,
-    });
+  const handleInputChange = (event) => {
+    setComments(event.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <h4>Comments</h4>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="comments">Do you have any comments?</label>
-          <textarea
-            id="comments"
-            name="comments"
-            rows="4"
-            cols="30"
-            value={this.state.comments}
-            onChange={this.handleInputChange}
-          ></textarea>
-          <button type="submit">Next</button>
+  return (
+    <div>
+      <Typography variant="h3">Comments</Typography>
+      <Box m={3}>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="outlined-multiline-flexible"
+            multiline
+            rowsMax={5}
+            label="Optional Comments"
+            variant="outlined"
+            onChange={handleInputChange}
+          />
+          <Box justifyContent="center" mt={3}>
+            <Button type="submit" variant="contained">
+              Save and Review
+            </Button>
+          </Box>
         </form>
-      </div>
-    );
-  }
-}
+      </Box>
+    </div>
+  );
+};
 
 export default connect()(Comments);

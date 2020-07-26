@@ -1,89 +1,92 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //--- CSS ---
 
 //--- Components ---
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import { Button, Box, Typography } from '@material-ui/core';
 
-class Understanding extends Component {
-  state = {
-    understand: '',
-  };
+const Understanding = () => {
+  const [understandingLevel, setUnderstandingLevel] = useState('');
+  const dispatch = useDispatch();
+  let history = useHistory();
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({
+    dispatch({
       type: 'SET_UNDERSTAND',
-      payload: this.state.understand,
+      payload: understandingLevel,
     });
-    this.setState({
-      understand: '',
-    });
-    this.props.history.push('/3');
+    setUnderstandingLevel('');
+    history.push('/3');
   };
 
-  handleInputChange = (event) => {
-    this.setState({
-      understand: event.target.value,
-    });
+  const handleInputChange = (event) => {
+    setUnderstandingLevel(event.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <h3>Understanding</h3>
-        <h4>How well do you understand today's concepts? (between 0 and 5):</h4>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="1">1</label>
-          <input
-            type="radio"
-            id="1"
-            name="understand"
-            required
-            value="1"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="2">2</label>
-          <input
-            type="radio"
-            id="2"
-            name="understand"
-            required
-            value="2"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="3">3</label>
-          <input
-            type="radio"
-            id="3"
-            name="understand"
-            required
-            value="3"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="4">4</label>
-          <input
-            type="radio"
-            id="4"
-            name="understand"
-            required
-            value="4"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="5">5</label>
-          <input
-            type="radio"
-            id="5"
-            name="understand"
-            required
-            value="5"
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Next</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Typography variant="h3">Understanding</Typography>
+      <form onSubmit={handleSubmit}>
+        <FormControl component="fieldset">
+          <Box m={3}>
+            <FormLabel component="legend">
+              How well do you understand today's concepts?
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-label="understanding"
+              name="understandingRating"
+              onChange={handleInputChange}
+            >
+              <FormControlLabel
+                value="1"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="1"
+              />
+              <FormControlLabel
+                value="2"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="2"
+              />
+              <FormControlLabel
+                value="3"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="3"
+              />
+              <FormControlLabel
+                value="4"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="4"
+              />
+              <FormControlLabel
+                value="5"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="5"
+              />
+            </RadioGroup>
+          </Box>
+          <Box justifyContent="center">
+            <Button variant="contained" type="submit">
+              Save and Next
+            </Button>
+          </Box>
+        </FormControl>
+      </form>
+    </div>
+  );
+};
 
 export default connect()(Understanding);

@@ -1,24 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { Button, Typography, Box } from '@material-ui/core';
 
 //--- CSS ---
 
 //--- Components ---
 
-class Success extends Component {
-  handleClick = () => {
-    this.props.history.push('/1');
+const Success = () => {
+  let history = useHistory();
+  const handleClick = () => {
+    history.push('/1');
   };
 
-  render() {
-    return (
-      <div>
-        <h1>Thank You!</h1>
-        <h3>Feedback submitted!</h3>
-        <button onClick={this.handleClick}>Leave New Feedback</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Typography variant="h2">Thank You!</Typography>
+      <Box m={3}>
+        <Typography variant="h4">Feedback submitted!</Typography>
+      </Box>
+      <Button variant="contained" onClick={handleClick}>
+        Leave New Feedback
+      </Button>
+    </div>
+  );
+};
 
 export default connect()(Success);

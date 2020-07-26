@@ -1,87 +1,94 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //--- CSS ---
 
 //--- Components ---
 
-class Feeling extends Component {
-  state = {
-    feel: '',
-  };
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import { Button, Box, Typography } from '@material-ui/core';
 
-  handleSubmit = (event) => {
+const Feeling = () => {
+  const [feelingLevel, setFeelingLevel] = useState('');
+  const dispatch = useDispatch();
+  let history = useHistory();
+
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.props.dispatch({
+    dispatch({
       type: 'SET_FEELING',
-      payload: this.state.feel,
+      payload: feelingLevel,
     });
-    this.setState({ feel: '' });
-    this.props.history.push('/2');
+    setFeelingLevel('');
+    history.push('/2');
   };
 
-  handleInputChange = (event) => {
-    this.setState({
-      feel: event.target.value,
-    });
+  const handleInputChange = (event) => {
+    setFeelingLevel(event.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <h3>Feeling</h3>
-        <h4> How are you feeling about today's concepts? (between 0 and 5):</h4>
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="1">1</label>
-          <input
-            type="radio"
-            id="1"
-            name="feel"
-            required
-            value="1"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="2">2</label>
-          <input
-            type="radio"
-            id="2"
-            name="feel"
-            required
-            value="2"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="3">3</label>
-          <input
-            type="radio"
-            id="3"
-            name="feel"
-            required
-            value="3"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="4">4</label>
-          <input
-            type="radio"
-            id="4"
-            name="feel"
-            required
-            value="4"
-            onChange={this.handleInputChange}
-          />
-          <label htmlFor="5">5</label>
-          <input
-            type="radio"
-            id="5"
-            name="feel"
-            required
-            value="5"
-            onChange={this.handleInputChange}
-          />
-          <button type="submit">Next</button>
-        </form>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Typography variant="h3">Feeling</Typography>
+
+      <form onSubmit={handleSubmit}>
+        <FormControl component="fieldset">
+          <Box m={3}>
+            <FormLabel component="legend">
+              How do you feel about today's concepts?
+            </FormLabel>
+            <RadioGroup
+              row
+              aria-label="feeling"
+              name="feelingRating"
+              onChange={handleInputChange}
+            >
+              <FormControlLabel
+                value="1"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="1"
+              />
+              <FormControlLabel
+                value="2"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="2"
+              />
+              <FormControlLabel
+                value="3"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="3"
+              />
+              <FormControlLabel
+                value="4"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="4"
+              />
+              <FormControlLabel
+                value="5"
+                labelPlacement="top"
+                control={<Radio required />}
+                label="5"
+              />
+            </RadioGroup>
+          </Box>
+          <Box justifyContent="center">
+            <Button variant="contained" type="submit">
+              Save and Next
+            </Button>
+          </Box>
+        </FormControl>
+      </form>
+    </div>
+  );
+};
 
 export default connect()(Feeling);
