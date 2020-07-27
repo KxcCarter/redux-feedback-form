@@ -6,7 +6,7 @@ Base mode is complete and can be viewed at localhost:3000/#/1
 
 ## NOTE:
 
-I am working on implementing a Material-UI stepper component, which is rendered on the root route. Currently it does not communicate with the Redux store.
+I am working on implementing a Material-UI stepper component, which is rendered on the root route. Currently it does not communicate with the Redux store. This is what I spent most of my time on 🤦🏼‍♂️
 
 ### TODO:
 

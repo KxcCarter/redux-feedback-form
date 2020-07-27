@@ -11,7 +11,7 @@ import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
 import Success from '../Success/Success';
 import HorizontalLinearStepper from '../Stepper/Stepper';
-import { Container, Box } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 
 //--- Components ---
 
