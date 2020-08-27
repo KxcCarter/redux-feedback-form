@@ -2,6 +2,7 @@ version: '3'
 
 services:
   client:
+    stdin_open: 'true'
     build:
       context: ./
       dockerfile: ./Dockerfile.client
@@ -19,7 +20,7 @@ services:
     image: postgres:latest
     restart: always
     ports:
-      - ${DOCKERDB_PORT}:${DOCKERDB_PORT}
+      - ${DOCKER_DB_PORT}:${DOCKER_DB_PORT}
     environment:
       POSTGRES_USER: ${DOCKER_DB_USER}
       POSTRGRES_PASSWORD: ${DOCKER_DB_PASS}
