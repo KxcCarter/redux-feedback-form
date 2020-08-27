@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 //--- CSS ---
@@ -11,10 +11,12 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { Button, Box, Typography } from '@material-ui/core';
+import { Button, Box, Typography, TextField } from '@material-ui/core';
 
 const Feeling = () => {
-  const [feelingLevel, setFeelingLevel] = useState('');
+  const store = useSelector((store) => store);
+  console.log(store);
+  const [feelingLevel, setFeelingLevel] = useState(store.feelingReducer);
   const dispatch = useDispatch();
   let history = useHistory();
 
@@ -24,7 +26,7 @@ const Feeling = () => {
       type: 'SET_FEELING',
       payload: feelingLevel,
     });
-    setFeelingLevel('');
+    // setFeelingLevel('');
     history.push('/2');
   };
 
@@ -47,6 +49,7 @@ const Feeling = () => {
               aria-label="feeling"
               name="feelingRating"
               onChange={handleInputChange}
+              value={feelingLevel}
             >
               <FormControlLabel
                 value="1"
@@ -85,6 +88,7 @@ const Feeling = () => {
               Save and Next
             </Button>
           </Box>
+          <TextField id="outlined" variant="outlined" value={feelingLevel} />
         </FormControl>
       </form>
     </div>

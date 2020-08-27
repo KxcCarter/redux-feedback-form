@@ -23,7 +23,7 @@ const Understanding = () => {
       type: 'SET_UNDERSTAND',
       payload: understandingLevel,
     });
-    setUnderstandingLevel('');
+    // setUnderstandingLevel('');
     history.push('/3');
   };
 
@@ -81,6 +81,9 @@ const Understanding = () => {
           <Box justifyContent="center">
             <Button variant="contained" type="submit">
               Save and Next
+            </Button>
+            <Button variant="contained" onClick={(event) => history.push('/1')}>
+              back
             </Button>
           </Box>
         </FormControl>
