@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-//--- CSS ---
-
 //--- Components ---
 
 import Radio from '@material-ui/core/Radio';
@@ -26,7 +24,7 @@ const Feeling = () => {
       type: 'SET_FEELING',
       payload: feelingLevel,
     });
-    // setFeelingLevel('');
+
     history.push('/2');
   };
 

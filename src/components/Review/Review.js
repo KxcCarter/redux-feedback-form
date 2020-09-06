@@ -27,7 +27,6 @@ const Review = () => {
     axios
       .post('/feedback', feedback)
       .then((response) => {
-        // should GET, but what is there to get?
         history.push('/success');
       })
       .catch((err) => {

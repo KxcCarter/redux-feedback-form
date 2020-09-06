@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Typography, Box } from '@material-ui/core';
 
-//--- CSS ---
-
 //--- Components ---
 
 const Success = () => {

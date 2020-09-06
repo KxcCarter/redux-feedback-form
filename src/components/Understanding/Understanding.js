@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-//--- CSS ---
-
 //--- Components ---
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -23,7 +21,7 @@ const Understanding = () => {
       type: 'SET_UNDERSTAND',
       payload: understandingLevel,
     });
-    // setUnderstandingLevel('');
+
     history.push('/3');
   };
 

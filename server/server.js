@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-// for Base mode I only need to POST, I think.
+// for Base mode I only need to POST
 app.post('/feedback', (req, res) => {
   const query = `INSERT INTO feedback (feeling, understanding, support, comments) 
                 VALUES ($1, $2, $3, $4);`;
